@@ -6,5 +6,7 @@ module Types
     field :gems, Int, null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :waifus, [WaifuType], null: false
+    field :series, [SeriesType], null: false
   end
 end
