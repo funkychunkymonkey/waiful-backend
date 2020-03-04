@@ -5,5 +5,8 @@ module Types
     field :gacha, mutation: Mutations::GachaWaifu
     field :favorite_waifu, mutation: Mutations::FavoriteWaifu
     field :unfavorite_waifu, mutation: Mutations::UnfavoriteWaifu
+    field :create_user, mutation: Mutations::CreateUser
+    field :create_run, mutation: Mutations::CreateRun
+    field :stop_run, mutation: Mutations::StopRun
   end
 end
