@@ -18,6 +18,7 @@ class SeriesService
         if(series.length === 0) 
             series = JikanService.new.top
         end
+
         series = series.sample
         if(series.id === nil) 
             check = Series.where(mal_id: series.mal_id, is_anime: series.is_anime).first
@@ -27,6 +28,7 @@ class SeriesService
                 series = check
             end
         end
+        
         series
     end
 

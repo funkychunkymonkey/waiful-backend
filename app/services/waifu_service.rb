@@ -7,8 +7,9 @@ class WaifuService
         if(@user.gems > 0)
             @user.gems = @user.gems - 1
             @user.save
-            add_waifu(generate_waifu)
-            true
+            waifu = generate_waifu
+            add_waifu(waifu)
+            waifu
         else
             false
         end
@@ -41,11 +42,7 @@ class WaifuService
         @user.waifus.delete(waifu)
     end
 
-    def favorite_waifu(waifu)
-        ActiveRecord::Base.connection.execute("UPDATE users_waifus SET is_favorite = TRUE WHERE waifu_id = #{waifu.id} AND user_id = #{@user.id}") 
-    end
-
-    def unfavorite_waifu(waifu)
-        ActiveRecord::Base.connection.execute("UPDATE users_waifus SET is_favorite = FALSE WHERE waifu_id = #{waifu.id} AND user_id = #{@user.id}") 
+    def favorite_waifu(waifu, value = true)
+        ActiveRecord::Base.connection.execute("UPDATE users_waifus SET is_favorite = #{value} FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu[:mal_id]}") 
     end
 end
