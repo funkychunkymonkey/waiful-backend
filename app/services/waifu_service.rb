@@ -3,6 +3,36 @@ class WaifuService
         @user = user
     end
 
+    def gacha
+        if(@user.gems > 0)
+            @user.gems = @user.gems - 1
+            @user.save
+            add_waifu(generate_waifu)
+            true
+        else
+            false
+        end
+    end
+
+    def generate_waifu
+        series_service = SeriesService.new(@user)
+        series = series_service.generate_series
+
+        jikan_service = JikanService.new
+        characters = jikan_service.get(series.mal_type, series.mal_id)
+        character = characters.sample
+
+        character.series = series
+        existing_character = Waifu.where(mal_id: character.mal_id).first
+        if(existing_character === nil)
+            character.save
+        else
+            character = existing_character
+        end
+
+        character
+    end
+
     def add_waifu(waifu)
         @user.waifus << waifu
     end
