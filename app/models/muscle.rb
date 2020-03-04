@@ -1,3 +1,3 @@
 class Muscle < ApplicationRecord
-    has_many :exercises, through: :exercises_muscles
+    has_and_belongs_to_many :exercises, through: :exercises_muscles
 end

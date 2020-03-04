@@ -7,6 +7,20 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :waifus, [WaifuType], null: false
+    def waifus
+      Waifu.all
+    end
     field :series, [SeriesType], null: false
+    def series
+      Series.all
+    end
+    field :workouts, [WorkoutsType], null: false
+    def workouts
+      Workout.all
+    end
+    field :runs, [RunsType], null: false
+    def runs
+      Run.all
+    end
   end
 end
