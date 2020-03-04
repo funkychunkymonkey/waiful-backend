@@ -42,5 +42,6 @@ exercises.each do |exercise|
         exercise_equipments <<  "(#{newExercise.id}, #{equipment})"
     end
 end
+
 ActiveRecord::Base.connection.execute( "INSERT INTO exercises_muscles (exercise_id, muscle_id) VALUES #{exercise_muscles.join(", ")}") 
 ActiveRecord::Base.connection.execute( "INSERT INTO equipments_exercises (exercise_id, equipment_id) VALUES #{exercise_equipments.join(", ")}")

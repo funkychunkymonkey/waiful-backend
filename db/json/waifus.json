@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Bararaika",
+    "mal_id": 10,
+    "image_url": "blabla",
+    "url": "blabla",
+    "series_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Honoka",
+    "mal_id": 20,
+    "image_url": "blabla",
+    "url": "blabla",
+    "series_id": 1
+  }
+]
