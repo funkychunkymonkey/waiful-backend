@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "email": "sample@sample.com",
+    "token": "token1",
+    "gems": 100
+  },
+  {
+    "id": 2,
+    "email": "genta@shibasaki.com",
+    "token": "token2",
+    "gems": 200
+  }
+]

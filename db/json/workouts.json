@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "user_id": 1,
+    "exercise_id": 535,
+    "reps": 10
+  },
+  {
+    "id": 2,
+    "user_id": 1,
+    "exercise_id": 536,
+    "reps": 10
+  },
+  {
+    "id": 3,
+    "user_id": 2,
+    "exercise_id": 597,
+    "reps": 10
+  },
+  {
+    "id": 4,
+    "user_id": 2,
+    "exercise_id": 536,
+    "reps": 10
+  }
+]
