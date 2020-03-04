@@ -8,19 +8,19 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :waifus, [WaifuType], null: false
     def waifus
-      Waifu.all
+      object.waifus
     end
     field :series, [SeriesType], null: false
     def series
-      Series.all
+      object.series
     end
     field :workouts, [WorkoutsType], null: false
     def workouts
-      Workout.all
+      object.workouts
     end
     field :runs, [RunsType], null: false
     def runs
-      Run.all
+      object.runs
     end
   end
 end
