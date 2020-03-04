@@ -3,6 +3,10 @@ class JikanService
     def initialize
     end
 
+    def search(mal_type, search)
+        q('/v3/search/' + mal_type + '?q=' + search)["results"].map{ |series| mal_to_series(mal_type, series) }
+    end
+
     def top(mal_type = nil)
         if(!mal_type) 
             mal_type = rand(2) === 1 ? "anime" : "manga"

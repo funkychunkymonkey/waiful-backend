@@ -3,6 +3,14 @@ class SeriesService
         @user = user
     end
 
+    def top(mal_type)
+        JikanService.new.top(mal_type)
+    end
+
+    def search(mal_type, search)
+        JikanService.new.search(mal_type, search)
+    end
+
     def get_series(mal_type, mal_id)
         series = Series.where(mal_id: mal_id, is_anime: mal_type === "anime").first
         if(!series) 
@@ -16,7 +24,7 @@ class SeriesService
     def generate_series
         series = @user ? @user.series : []
         if(series.length === 0) 
-            series = JikanService.new.top
+            series = top
         end
 
         series = series.sample

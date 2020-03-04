@@ -24,5 +24,17 @@ module Types
     def equipments
       Equipment.all
     end
+
+    field :series, [Types::SeriesType], null:false do
+      argument :mal_type, String, required: true
+      argument :search, String, required: false
+    end
+    def series(input)
+      if(input[:search] && input[:search] != '')
+        SeriesService.new(nil).search(input[:mal_type], input[:search])
+      else
+        SeriesService.new(nil).top(input[:mal_type])
+      end
+    end
   end
 end
