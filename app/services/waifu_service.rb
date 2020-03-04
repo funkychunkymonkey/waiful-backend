@@ -19,7 +19,7 @@ class WaifuService
         series = series_service.generate_series
 
         jikan_service = JikanService.new
-        characters = jikan_service.get(series.mal_type, series.mal_id)
+        characters = jikan_service.get_characters(series.mal_type, series.mal_id)
         character = characters.sample
 
         character.series = series
