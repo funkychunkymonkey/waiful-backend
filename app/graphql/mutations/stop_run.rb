@@ -3,7 +3,7 @@ module Mutations
     argument :distance, Int, required: true
     argument :data, String, required: true
 
-    type Types::RunsType
+    type Types::RunType
 
     def resolve(input)
       run = User.find(1).runs.where(ended_at: nil).first
