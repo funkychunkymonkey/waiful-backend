@@ -8,5 +8,6 @@ module Types
     field :create_user, mutation: Mutations::CreateUser
     field :create_run, mutation: Mutations::CreateRun
     field :stop_run, mutation: Mutations::StopRun
+    field :create_workout, mutation: Mutations::CreateWorkout
   end
 end
