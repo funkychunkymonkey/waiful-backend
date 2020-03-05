@@ -8,5 +8,7 @@ module Types
     field :level, Int, null: false
     field :is_favorite, Boolean, null: false
     field :created_at, String, null: false
+    
+    field :series, SeriesType, null: false
   end
 end

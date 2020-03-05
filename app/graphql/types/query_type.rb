@@ -5,22 +5,22 @@ module Types
       User.all
     end
 
-    field :runs, [Types::RunsType], null:false
-    def runs
-      Run.all
+    field :user, Types::UserType, null: false 
+    def user
+      User.where(id: 1).first
     end
 
-    field :exercises, [Types::ExercisesType], null:false
+    field :exercises, [Types::ExerciseType], null:false
     def exercises
       Exercise.all
     end
 
-    field :muscles, [Types::MusclesType], null:false
+    field :muscles, [Types::MuscleType], null:false
     def muscles
       Muscle.all
     end
 
-    field :equipments, [Types::EquipmentsType], null:false
+    field :equipments, [Types::EquipmentType], null:false
     def equipments
       Equipment.all
     end
