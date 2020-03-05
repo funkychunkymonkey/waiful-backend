@@ -3,7 +3,7 @@ class SeriesService
         @user = user
     end
 
-    def top(mal_type)
+    def top(mal_type = nil)
         JikanService.new.top(mal_type)
     end
 
