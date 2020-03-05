@@ -1,6 +1,6 @@
 module Mutations
   class CreateRun < BaseMutation
-    type Types::RunsType
+    type Types::RunType
     def resolve()
       User.find(1).runs.create!({
         distance: 0,

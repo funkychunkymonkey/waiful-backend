@@ -29,6 +29,7 @@ exercises = JSON.parse(File.read('./db/json/exercises.json'))
 exercise_muscles = []
 exercise_equipments = []
 exercises.each do |exercise|
+  if(exercise["name"] != '')
     newExercise = Exercise.create!({
       :id => exercise['id'],
       :name => exercise['name'],
@@ -41,7 +42,18 @@ exercises.each do |exercise|
     exercise["equipment"].each do |equipment|
         exercise_equipments <<  "(#{newExercise.id}, #{equipment})"
     end
+  end
 end
 
 ActiveRecord::Base.connection.execute( "INSERT INTO exercises_muscles (exercise_id, muscle_id) VALUES #{exercise_muscles.join(", ")}") 
 ActiveRecord::Base.connection.execute( "INSERT INTO equipments_exercises (exercise_id, equipment_id) VALUES #{exercise_equipments.join(", ")}")
+
+exerciseImages = JSON.parse(File.read('./db/json/exerciseImages.json'))
+exerciseImages.each do |image|
+    newImage = ExerciseImage.create!({
+      :id => image['id'],
+      :exercise_id => image['exercise'],
+      :path => image['image'],
+      :is_main => image['is_main']
+    })
+end

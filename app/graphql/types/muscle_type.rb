@@ -1,7 +1,8 @@
 module Types
-  class MusclesType < Types::BaseObject
+  class MuscleType < Types::BaseObject
     field :id, ID, null: false
     field :name, String, null: false
-    field :exercises, [ExercisesType], null: false
+
+    field :exercises, [ExerciseType], null: false
   end
 end
