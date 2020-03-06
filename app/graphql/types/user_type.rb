@@ -6,22 +6,7 @@ module Types
     field :gems, Int, null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    
-    field :waifus, [WaifuType], null: false
-    def waifus
-      object.waifus
-    end
-    field :series, [SeriesType], null: false
-    def series
-      object.series
-    end
-    field :workouts, [WorkoutType], null: false
-    def workouts
-      object.workouts
-    end
-    field :runs, [RunType], null: false
-    def runs
-      object.runs
-    end
+    field :current_run, RunType, null: true
+    field :runs, [RunType], null: true
   end
 end
