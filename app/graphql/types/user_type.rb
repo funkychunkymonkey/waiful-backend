@@ -8,5 +8,6 @@ module Types
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :current_run, RunType, null: true
     field :runs, [RunType], null: true
+    field :series, [SeriesType], null: false
   end
 end
