@@ -9,5 +9,6 @@ module Types
     field :current_run, RunType, null: true
     field :runs, [RunType], null: true
     field :series, [SeriesType], null: false
+    field :workouts, [WorkoutType], null:false
   end
 end
