@@ -9,7 +9,7 @@ module Types
     field :equipments, [EquipmentType], null: false 
 
     field :exercise_image, ExerciseImageType, null: true
-    def image 
+    def exercise_image 
       object.exercise_images.where(is_main:true).first
     end
   end
