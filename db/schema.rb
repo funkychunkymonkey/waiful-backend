@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_03_144907) do
+ActiveRecord::Schema.define(version: 2020_03_07_081302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,17 @@ ActiveRecord::Schema.define(version: 2020_03_03_144907) do
     t.bigint "muscle_id", null: false
     t.index ["exercise_id", "muscle_id"], name: "index_exercises_muscles_on_exercise_id_and_muscle_id"
     t.index ["muscle_id", "exercise_id"], name: "index_exercises_muscles_on_muscle_id_and_exercise_id"
+  end
+
+  create_table "muscle_groups", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "muscle_groups_muscles", id: false, force: :cascade do |t|
+    t.bigint "muscle_id", null: false
+    t.bigint "muscle_group_id", null: false
+    t.index ["muscle_group_id", "muscle_id"], name: "index_muscle_groups_muscles_on_muscle_group_id_and_muscle_id"
+    t.index ["muscle_id", "muscle_group_id"], name: "index_muscle_groups_muscles_on_muscle_id_and_muscle_group_id"
   end
 
   create_table "muscles", force: :cascade do |t|

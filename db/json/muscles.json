@@ -2,76 +2,91 @@
   {
     "id": 2,
     "name": "Anterior deltoid",
+    "group": [1, 2],
     "is_front": true
   },
   {
     "id": 1,
     "name": "Biceps brachii",
+    "group": [1],
     "is_front": true
   },
   {
     "id": 11,
     "name": "Biceps femoris",
+    "group": [4],
     "is_front": false
   },
   {
     "id": 13,
     "name": "Brachialis",
+    "group": [1],
     "is_front": true
   },
   {
     "id": 7,
     "name": "Gastrocnemius",
+    "group": [4],
     "is_front": false
   },
   {
     "id": 8,
     "name": "Gluteus maximus",
+    "group": [4],
     "is_front": false
   },
   {
     "id": 12,
     "name": "Latissimus dorsi",
+    "group": [3],
     "is_front": false
   },
   {
     "id": 14,
     "name": "Obliquus externus abdominis",
+    "group": [2],
     "is_front": true
   },
   {
     "id": 4,
     "name": "Pectoralis major",
+    "group": [2],
     "is_front": true
   },
   {
     "id": 10,
     "name": "Quadriceps femoris",
+    "group": [4],
     "is_front": true
   },
   {
     "id": 6,
     "name": "Rectus abdominis",
+    "group": [2],
     "is_front": true
   },
   {
     "id": 3,
     "name": "Serratus anterior",
+    "group": [3],
     "is_front": true
   },
   {
     "id": 15,
     "name": "Soleus",
+    "group": [4],
     "is_front": false
   },
   {
     "id": 9,
     "name": "Trapezius",
+    "group": [3],
     "is_front": false
   },
   {
     "id": 5,
     "name": "Triceps brachii",
+    "group": [1],
     "is_front": false
   }
 ]
