@@ -10,5 +10,6 @@ module Types
     field :runs, [RunType], null: true
     field :series, [SeriesType], null: false
     field :workouts, [WorkoutType], null:false
+    field :waifus, [WaifuType], null:false
   end
 end
