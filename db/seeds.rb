@@ -56,7 +56,9 @@ exercises.each do |exercise|
         exercise_muscles <<  "(#{newExercise.id}, #{muscle})"
     end
     exercise["equipment"].each do |equipment|
+      if(equipment != 7)
         exercise_equipments <<  "(#{newExercise.id}, #{equipment})"
+      end
     end
   end
 end
