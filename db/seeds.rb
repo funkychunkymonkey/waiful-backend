@@ -1,12 +1,26 @@
-ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, runs, users, workouts")
+ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, muscle_groups, muscle_groups_muscles, runs, users, users_waifus, waifus, workouts, series, series_users")
 
+muscle_groups = JSON.parse(File.read('./db/json/muscle_groups.json'))
+muscle_groups.each do |muscle_group|
+  MuscleGroup.create!({
+      :id => muscle_group['id'],
+      :name => muscle_group['name']
+  })
+end
+
+muscle_groups_muscles = [];
 muscles = JSON.parse(File.read('./db/json/muscles.json'))
 muscles.each do |muscle|
-  Muscle.create!({
+  newMuscle = Muscle.create!({
       :id => muscle['id'],
       :name => muscle['name']
   })
+  muscle["group"].each do |group| 
+    muscle_groups_muscles <<  "(#{newMuscle.id}, #{group})"
+  end
 end
+ActiveRecord::Base.connection.execute( "INSERT INTO muscle_groups_muscles (muscle_id, muscle_group_id) VALUES #{muscle_groups_muscles.join(", ")}") 
+
 
 categories = JSON.parse(File.read('./db/json/exerciseCategories.json'))
 categories.each do |category|
