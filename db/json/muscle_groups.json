@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Arms"
+  },
+  {
+    "id": 2,
+    "name": "Front"
+  },
+  {
+    "id": 3,
+    "name": "Back"
+  },
+  {
+    "id": 4,
+    "name": "Legs"
+  }
+]
