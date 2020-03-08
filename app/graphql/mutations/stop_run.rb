@@ -6,12 +6,8 @@ module Mutations
     type Types::RunType
 
     def resolve(input)
-      run = User.find(1).runs.where(ended_at: nil).first
-      run.distance = input[:distance]
-      run.data = input[:data]
-      run.ended_at = Time.current
-      run.save
-      run
+      service = RunService.new(User.find(1))
+      service.end(input)
     end
   end
 end 

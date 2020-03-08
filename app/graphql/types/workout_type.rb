@@ -4,6 +4,7 @@ module Types
     field :reps, Int, null: false
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :gems, Int, null:true
 
     field :exercise, ExerciseType, null: false
     field :user, UserType, null: false
