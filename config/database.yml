@@ -1,5 +1,4 @@
 production:
-  <<: *default
   adapter: postgresql
   database: <%= ENV.fetch("DATABASE_NAME") %>
   encoding: utf-8
