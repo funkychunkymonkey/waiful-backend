@@ -5,7 +5,7 @@ class WaifuService
 
     def gacha
         if(@user.gems > 0)
-            @user.gems = @user.gems - 1
+            @user.gems = @user.gems - 20
             @user.save
             waifu = generate_waifu
             add_waifu(waifu)
@@ -39,7 +39,16 @@ class WaifuService
     end
 
     def remove_waifu(waifu)
+        gems = @user.waifus.where(mal_id: waifu.mal_id).size
         @user.waifus.delete(waifu)
+        gems
+    end
+
+    def sell_waifu(waifu)
+        gems = remove_waifu(waifu)
+        @user.gems = @user.gems + gems
+        @user.save
+        gems
     end
 
     def favorite_waifu(waifu, value = true)
