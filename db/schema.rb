@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 2020_03_07_081302) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "chcek_graph_qls", force: :cascade do |t|
+    t.string "name"
+    t.integer "int"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "equipments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -72,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_081302) do
 
   create_table "muscles", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "runs", force: :cascade do |t|
