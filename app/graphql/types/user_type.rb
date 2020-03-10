@@ -7,9 +7,20 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :current_run, RunType, null: true
+
     field :runs, [RunType], null: true
-    field :series, [SeriesType], null: false
+    def runs
+      object.runs.order(id: 'DESC') 
+    end
+
     field :workouts, [WorkoutType], null:false
+    def workouts
+      object.workouts.order(id: 'DESC') 
+    end
+
     field :waifus, [WaifuType], null:false
+    def waifus
+      object.waifus.order(created_at: 'DESC') 
+    end
   end
 end
