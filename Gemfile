@@ -51,7 +51,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'graphql'
-gem 'graphiql-rails', group: :development
+gem 'graphiql-rails'
+# , group: :development
 gem 'dotenv-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
