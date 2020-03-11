@@ -6,7 +6,7 @@ module Mutations
       type Types::SeriesType
   
       def resolve(input)
-        service = SeriesService.new(User.find(1))
+        service = SeriesService.new(context[:user])
         series = service.get_series(input[:mal_type], input[:mal_id])
         service.add_series(series)
         series

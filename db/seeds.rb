@@ -77,15 +77,3 @@ exerciseImages.each do |image|
     })
   end
 end
-
-users = JSON.parse(File.read('./db/json/users.json'))
-users.each do |user|
-    User.create!({
-      :id => user['id'],
-      :email => user['email'],
-      :token => user['token'],
-      :gems => user['gems'],
-      :created_at => Time.current,
-      :updated_at => Time.current
-    })
-end

@@ -6,7 +6,7 @@ module Mutations
     type Types::WorkoutType
 
     def resolve(input)
-      service = WorkoutService.new(User.find(1))
+      service = WorkoutService.new(context[:user])
       service.create(input)
     end
   end

@@ -6,7 +6,6 @@ module Types
     field :sell_waifu, mutation: Mutations::SellWaifu
     field :favorite_waifu, mutation: Mutations::FavoriteWaifu
     field :unfavorite_waifu, mutation: Mutations::UnfavoriteWaifu
-    field :create_user, mutation: Mutations::CreateUser
     field :create_run, mutation: Mutations::CreateRun
     field :stop_run, mutation: Mutations::StopRun
     field :create_workout, mutation: Mutations::CreateWorkout

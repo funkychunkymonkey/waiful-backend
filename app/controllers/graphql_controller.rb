@@ -5,13 +5,21 @@ class GraphqlController < ApplicationController
   protect_from_forgery with: :null_session
 
   def execute
+    # query variables
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
+    # auth
+    user = User.where(token: params[:device_id]).first
+    if(user == nil) 
+      user = User.create!(token: params[:device_id], gems: 50, email: "")
+    end
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      user: user,
     }
+    
+    # execute
     result = SampleSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue => e

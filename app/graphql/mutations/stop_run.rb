@@ -6,7 +6,7 @@ module Mutations
     type Types::RunType
 
     def resolve(input)
-      service = RunService.new(User.find(1))
+      service = RunService.new(context[:user])
       service.end(input)
     end
   end
