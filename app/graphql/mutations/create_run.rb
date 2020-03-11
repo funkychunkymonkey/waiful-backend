@@ -2,7 +2,7 @@ module Mutations
   class CreateRun < BaseMutation
     type Types::RunType
     def resolve()
-      service = RunService.new(User.find(1))
+      service = RunService.new(context[:user])
       service.create
     end
   end
