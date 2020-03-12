@@ -6,6 +6,9 @@ module Types
     field :image_url, String, null: false
     field :url, String, null: false
     field :description, String, null: false
+    def description
+      object.description == nil ? '' : object.description
+    end
 
     field :is_favorite, Boolean, null: false
     field :created_at, String, null: false
