@@ -6,6 +6,10 @@ module Types
     field :image_url, String, null: false
     field :url, String, null: false
     field :level, Int, null: false
+    def level
+      object.level == nil ? 1 : object.level
+    end
+
     field :is_favorite, Boolean, null: false
     field :created_at, String, null: false
     
