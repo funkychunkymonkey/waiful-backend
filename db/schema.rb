@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_081302) do
+ActiveRecord::Schema.define(version: 2020_03_12_141303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,12 @@ ActiveRecord::Schema.define(version: 2020_03_07_081302) do
     t.index ["waifu_id", "user_id"], name: "index_users_waifus_on_waifu_id_and_user_id"
   end
 
+  create_table "waifu_images", force: :cascade do |t|
+    t.bigint "waifu_id", null: false
+    t.string "url"
+    t.index ["waifu_id"], name: "index_waifu_images_on_waifu_id"
+  end
+
   create_table "waifus", force: :cascade do |t|
     t.string "name"
     t.integer "mal_id"
@@ -140,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_03_07_081302) do
   add_foreign_key "exercise_images", "exercises"
   add_foreign_key "exercises", "exercise_categories"
   add_foreign_key "runs", "users"
+  add_foreign_key "waifu_images", "waifus"
   add_foreign_key "waifus", "series"
   add_foreign_key "workouts", "exercises"
   add_foreign_key "workouts", "users"
