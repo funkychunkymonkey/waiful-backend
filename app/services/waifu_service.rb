@@ -8,7 +8,7 @@ class WaifuService
             @user.gems = @user.gems - 20
             @user.save
             waifu = generate_waifu
-            add_waifu(waifu)
+            waifu = add_waifu(waifu)
             waifu
         else
             false
@@ -35,7 +35,14 @@ class WaifuService
     end
 
     def add_waifu(waifu)
-        @user.waifus << waifu
+        rows = ActiveRecord::Base.connection.update("UPDATE users_waifus SET level = level + 1 FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu.mal_id}") 
+        if(rows == 0)
+            @user.waifus << waifu
+            waifu.level 1
+        else 
+            waifu.level 0
+        end
+        waifu
     end
 
     def remove_waifu(waifu)
