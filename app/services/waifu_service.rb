@@ -26,7 +26,9 @@ class WaifuService
         character.series = series
         existing_character = Waifu.where(mal_id: character.mal_id).first
         if(existing_character === nil)
+            character.description = jikan_service.get_character_info(character.mal_id)["about"]
             character.save
+            jikan_service.get_character_images(character.mal_id).map{|image| character.waifu_images.create!({ url: image['large'] })}
         else
             character = existing_character
         end

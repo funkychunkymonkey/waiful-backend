@@ -22,6 +22,14 @@ class JikanService
         q(mal_type == 'anime' ? ('/v3/anime/' + mal_id.to_s + '/characters_staff') : ('/v3/manga/' + mal_id.to_s + '/characters'))["characters"].map{ |character| mal_to_waifu character }
     end
 
+    def get_character_info(mal_id)
+        q('/v3/character/' + mal_id.to_s)
+    end
+
+    def get_character_images(mal_id)
+        q('/v3/character/' + mal_id.to_s + '/pictures')["pictures"]
+    end
+
     private
 
     def mal_to_series(mal_type, series)
