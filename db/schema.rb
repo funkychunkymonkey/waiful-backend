@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_141303) do
+ActiveRecord::Schema.define(version: 2020_03_12_141450) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_141303) do
     t.string "image_url"
     t.string "url"
     t.bigint "series_id", null: false
+    t.text "description"
     t.index ["series_id"], name: "index_waifus_on_series_id"
   end
 
