@@ -21,7 +21,7 @@ module Types
 
     field :waifus, [WaifuType], null:false
     def waifus
-      object.waifus.order(created_at: 'DESC') 
+      object.waifus.order(updated_at: 'DESC') 
     end
   end
 end

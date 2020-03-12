@@ -35,7 +35,7 @@ class WaifuService
     end
 
     def add_waifu(waifu)
-        rows = ActiveRecord::Base.connection.update("UPDATE users_waifus SET level = level + 1 FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu.mal_id}") 
+        rows = ActiveRecord::Base.connection.update("UPDATE users_waifus SET level = level + 1, updated_at = NOW() FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu.mal_id}") 
         if(rows == 0)
             @user.waifus << waifu
             waifu.level 1
