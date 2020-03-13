@@ -9,5 +9,6 @@ module Types
     field :create_run, mutation: Mutations::CreateRun
     field :stop_run, mutation: Mutations::StopRun
     field :create_workout, mutation: Mutations::CreateWorkout
+    field :buy_personality, mutation: Mutations::BuyPersonality
   end
 end
