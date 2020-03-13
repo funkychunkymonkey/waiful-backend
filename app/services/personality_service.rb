@@ -13,4 +13,8 @@ class PersonalityService
             false
         end
     end
+
+    def add(waifu_id, personality_id)            
+        ActiveRecord::Base.connection.update("UPDATE users_waifus SET personality_id = #{personality_id} WHERE user_id = #{@user.id} AND waifu_id = #{waifu_id}") > 0
+    end
 end
