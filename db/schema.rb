@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_141450) do
+ActiveRecord::Schema.define(version: 2020_03_13_132104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_141450) do
     t.string "name"
   end
 
+  create_table "personalities_users", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "personality_id", null: false
+    t.index ["user_id", "personality_id"], name: "index_personalities_users_on_user_id_and_personality_id"
+    t.index ["user_id"], name: "index_personalities_users_on_user_id"
+  end
+
   create_table "runs", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "distance", null: false
@@ -114,6 +121,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_141450) do
     t.integer "level", default: 1
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.integer "personality_id"
     t.index ["user_id", "waifu_id"], name: "index_users_waifus_on_user_id_and_waifu_id"
     t.index ["waifu_id", "user_id"], name: "index_users_waifus_on_waifu_id_and_user_id"
   end
@@ -146,6 +154,7 @@ ActiveRecord::Schema.define(version: 2020_03_12_141450) do
 
   add_foreign_key "exercise_images", "exercises"
   add_foreign_key "exercises", "exercise_categories"
+  add_foreign_key "personalities_users", "users"
   add_foreign_key "runs", "users"
   add_foreign_key "waifu_images", "waifus"
   add_foreign_key "waifus", "series"

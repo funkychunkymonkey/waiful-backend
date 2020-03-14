@@ -9,6 +9,7 @@ module Types
     field :created_at, String, null: false
     field :series, SeriesType, null: false
     field :waifu_images, [WaifuImageType], null: false
+    field :personality_id, Int, null: true
 
     field :description, String, null: false
     def description

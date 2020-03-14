@@ -9,6 +9,12 @@ module Types
     field :current_run, RunType, null: true
 
     field :series, [SeriesType], null: true
+
+    field :personalities, [Int], null: false
+    def personalities
+      object.personalities.map{|x| x["personality_id"]}
+    end
+
     field :runs, [RunType], null: true
     def runs
       object.runs.order(id: 'DESC') 
