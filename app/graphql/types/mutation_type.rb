@@ -12,5 +12,6 @@ module Types
     field :buy_personality, mutation: Mutations::BuyPersonality
     field :add_personality, mutation: Mutations::AddPersonality
     field :create_exercise, mutation: Mutations::CreateExercise
+    field :add_bonus, mutation: Mutations::AddBonus
   end
 end
