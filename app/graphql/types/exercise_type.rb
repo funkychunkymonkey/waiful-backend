@@ -3,6 +3,7 @@ module Types
     field :id, ID, null: false
     field :name, String, null: false
     field :description, String, null: false
+    field :userId, Int, null: true
     
     field :muscles, [MuscleType], null: false
     field :exercise_images, [ExerciseImageType], null: false

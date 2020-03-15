@@ -48,8 +48,7 @@ exercises.each do |exercise|
     newExercise = Exercise.create!({
       :id => exercise['id'],
       :name => exercise['name'],
-      :description => exercise['description'],
-      :exercise_category_id => exercise['category']
+      :description => exercise['description']
     })
     existing_exercises << exercise['id']
     exercise["muscles"].each do |muscle|
