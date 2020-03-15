@@ -44,19 +44,20 @@ existing_exercises = []
 exercise_muscles = []
 exercise_equipments = []
 exercises.each do |exercise|
-  if(exercise["language"] == 2 )
+  if(exercise["language"] == 2 && exercise["muscles"].size > 0 && exercise["equipment"].size > 0 && exercise['description'].size >= 100)
     newExercise = Exercise.create!({
       :id => exercise['id'],
       :name => exercise['name'],
       :description => exercise['description'],
-      :exercise_category_id => exercise['category']
     })
     existing_exercises << exercise['id']
     exercise["muscles"].each do |muscle|
         exercise_muscles <<  "(#{newExercise.id}, #{muscle})"
     end
     exercise["equipment"].each do |equipment|
-      if(equipment != 7)
+      if(equipment == 9)
+        exercise_equipments <<  "(#{newExercise.id}, 8)"
+      elsif(equipment != 7)
         exercise_equipments <<  "(#{newExercise.id}, #{equipment})"
       end
     end

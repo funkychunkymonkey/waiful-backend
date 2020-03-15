@@ -7,7 +7,7 @@ module Types
 
     field :exercises, [Types::ExerciseType], null:false
     def exercises
-      Exercise.all
+      Exercise.where(user_id: nil).or(Exercise.where(user_id: context[:user].id)).all
     end
 
     field :muscles, [Types::MuscleType], null:false
