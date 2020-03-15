@@ -4,7 +4,7 @@ class WaifuService
     end
 
     def gacha
-        if(@user.gems > 0)
+        if(@user.gems >= 20)
             @user.gems = @user.gems - 20
             @user.save
             waifu = generate_waifu

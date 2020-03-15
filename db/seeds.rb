@@ -1,4 +1,4 @@
-ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, muscle_groups, muscle_groups_muscles, runs, users, users_waifus, waifus, workouts, series, series_users")
+ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, muscle_groups, muscle_groups_muscles, personalities_users, runs, users, users_waifus, waifus, waifu_images, workouts, series, series_users")
 
 muscle_groups = JSON.parse(File.read('./db/json/muscle_groups.json'))
 muscle_groups.each do |muscle_group|
