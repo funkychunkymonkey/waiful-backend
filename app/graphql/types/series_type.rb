@@ -7,5 +7,11 @@ module Types
     field :name, String, null: false
     field :image_url, String, null: false
     field :url, String, null: false
+
+    field :waifus, [WaifuType], null: false
+    def waifus 
+      service = JikanService.new
+      service.get_characters(object.mal_type, object.mal_id)
+    end
   end
 end
