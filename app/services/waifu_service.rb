@@ -15,6 +15,17 @@ class WaifuService
         end
     end
 
+    def buy_waifu(waifu)
+        if(@user.gems >= 100)
+            @user.gems = @user.gems - 100
+            @user.save
+            waifu = add_waifu(waifu)
+            waifu
+        else
+            false
+        end
+    end
+
     def generate_waifu
         series_service = SeriesService.new(@user)
         series = series_service.generate_series
@@ -34,6 +45,17 @@ class WaifuService
         end
 
         character
+    end
+
+    def get_waifu(series, mal_id)
+        waifu = Waifu.where(mal_id: mal_id).first
+        if(waifu == nil) then
+            jikan_service = JikanService.new
+            waifu = jikan_service.get_waifu(mal_id)
+            waifu.series_id = series.id
+            waifu.save
+        end
+        waifu
     end
 
     def add_waifu(waifu)
