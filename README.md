@@ -1,4 +1,4 @@
-# waiful-client
+# waiful-backend
 
 "This was created during our time as students at Code Chrysalis."
 
@@ -7,11 +7,6 @@ Revolutionise your laifu with Waiful, a health and wellness app that motivates y
 Let's use it for your life!
 
 <img src="assets/waiful_logo.png" width="200px">
-
-## URL
-
-You can try this app here.  
-// deploy's URL
 
 ## Technology
 
