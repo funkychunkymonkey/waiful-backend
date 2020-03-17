@@ -35,27 +35,19 @@ class WaifuService
         character = characters.sample
 
         character.series = series
-        existing_character = Waifu.where(mal_id: character.mal_id).first
-        if(existing_character === nil)
-            character.description = jikan_service.get_character_info(character.mal_id)["about"]
-            character.save
-            jikan_service.get_character_images(character.mal_id).map{|image| character.waifu_images.create!({ url: image['large'] })}
-        else
-            character = existing_character
-        end
-
-        character
+        get_waifu(series, character.mal_id)
     end
 
     def get_waifu(series, mal_id)
-        waifu = Waifu.where(mal_id: mal_id).first
-        if(waifu == nil) then
+        character = Waifu.where(mal_id: mal_id).first
+        if(character === nil)
             jikan_service = JikanService.new
-            waifu = jikan_service.get_waifu(mal_id)
-            waifu.series_id = series.id
-            waifu.save
+            character = jikan_service.get_waifu(mal_id)
+            character.series_id = series.id
+            character.save
+            jikan_service.get_character_images(character.mal_id).map{|image| character.waifu_images.create!({ url: image['large'] })}
         end
-        waifu
+        character
     end
 
     def add_waifu(waifu)
