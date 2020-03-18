@@ -17,6 +17,18 @@ class GraphqlController < ApplicationController
     end
     context = {
       user: user,
+      exercise_muscle_loader: Dataloader.new do |ids|
+        # take array of exercise ids
+        # get array of muscle ids 
+        #call muscle loader with your array of muscle ids
+        # return muscles
+      end,
+      muscle_loader: Dataloader.new do |ids|
+        Muscle.find(*ids)
+      end,
+      equipment_loader: Dataloader.new do |ids|
+        Equipment.find(*ids)
+      end
     }
     
     # execute

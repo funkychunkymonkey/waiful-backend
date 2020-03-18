@@ -4,8 +4,14 @@ module Types
     field :name, String, null: false
     field :description, String, null: false
     field :userId, Int, null: true
-    
-    field :muscles, [MuscleType], null: false
+
+    field :muscles do
+      type [MuscleType]
+      resolve ->(obj, args, ctx) {
+        ctx[:exercise_muscle_loader].load(obj.id)
+      }
+    end
+
     field :exercise_images, [ExerciseImageType], null: false
     field :equipments, [EquipmentType], null: false 
 
