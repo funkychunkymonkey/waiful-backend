@@ -41,11 +41,19 @@ class JikanService
         ended_at = '';
 
         if(series['aired']) 
-            started_at = DateTime.parse(series['aired']['from']).strftime('%b %Y')
-            ended_at = DateTime.parse(series['aired']['to']).strftime('%b %Y')
+            if(series['aired']['from'])
+                started_at = DateTime.parse(series['aired']['from']).strftime('%b %Y')
+            end
+            if(series['aired']['to'])
+                ended_at = DateTime.parse(series['aired']['to']).strftime('%b %Y')
+            end
         elsif(series['published'])
-            started_at = DateTime.parse(series['published']['from']).strftime('%b %Y')
-            ended_at = DateTime.parse(series['published']['to']).strftime('%b %Y')
+            if(series['published']['from'])
+                started_at = DateTime.parse(series['published']['from']).strftime('%b %Y')
+            end
+            if(series['published']['to'])
+                ended_at = DateTime.parse(series['published']['to']).strftime('%b %Y')
+            end
         else 
             started_at = series['start_date']
             ended_at = series['end_date']
