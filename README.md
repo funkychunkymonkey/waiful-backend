@@ -1,4 +1,4 @@
-# waiful-client
+# waiful-backend
 
 **This was created during our time as students at Code Chrysalis.**
 
