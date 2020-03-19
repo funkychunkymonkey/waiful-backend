@@ -8,10 +8,10 @@ Let's use it for your life!
 
 <img src="https://user-images.githubusercontent.com/56245555/76932158-9c99ee80-692d-11ea-9cec-fbef66e13374.png" width="700px">
 
-# URL
+## URL
 
 You can try this app here.  
-// deploy's URL
+https://apps.apple.com/jp/app/waiful/id1502803346?mt=8
 
 # Technology
 
