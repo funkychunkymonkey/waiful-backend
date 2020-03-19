@@ -42,7 +42,12 @@ class JikanService
             :is_anime => mal_type === "anime",
             :mal_id => series["mal_id"],
             :image_url => series["image_url"],
-            :url => series["url"]
+            :url => series["url"],
+            :episodes => series["episodes"],
+            :type => series["type"],
+            :start_date => series["start_date"],
+            :end_date => series["end_date"],
+            :score => series["score"],
         })
     end
     def mal_to_waifu(character)
