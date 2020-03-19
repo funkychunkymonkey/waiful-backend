@@ -15,9 +15,12 @@ class WaifuService
         end
     end
 
-    def buy_waifu(waifu)
-        if(@user.gems >= 100)
-            @user.gems = @user.gems - 100
+    def buy_waifu(waifu, price = nil)
+        if(price == nil || price <= 0) 
+            price = 100
+        end
+        if(@user.gems >= price)
+            @user.gems = @user.gems - price
             @user.save
             waifu = add_waifu(waifu)
             waifu

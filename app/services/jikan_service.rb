@@ -31,7 +31,10 @@ class JikanService
     end
 
     def get_character_images(mal_id)
-        q('/v3/character/' + mal_id.to_s + '/pictures')["pictures"]
+        result = q('/v3/character/' + mal_id.to_s + '/pictures')["pictures"]
+        puts "-------------------"
+        puts result
+        result
     end
 
     private
@@ -77,7 +80,8 @@ class JikanService
             :mal_id => character["mal_id"],
             :image_url => character["image_url"],
             :url => character["url"],
-            :description => character["about"]
+            :description => character["about"],
+            :role => character["role"] 
         })
     end
 
