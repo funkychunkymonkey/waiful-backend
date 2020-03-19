@@ -50,17 +50,6 @@ class WaifuService
         character
     end
 
-    def get_waifu(series, mal_id)
-        waifu = Waifu.where(mal_id: mal_id).first
-        if(waifu == nil) then
-            jikan_service = JikanService.new
-            waifu = jikan_service.get_waifu(mal_id)
-            waifu.series_id = series.id
-            waifu.save
-        end
-        waifu
-    end
-
     def add_waifu(waifu)
         rows = ActiveRecord::Base.connection.update("UPDATE users_waifus SET level = level + 1, updated_at = NOW() FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu.mal_id}") 
         if(rows == 0)
