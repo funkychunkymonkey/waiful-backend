@@ -7,6 +7,11 @@ module Types
     field :name, String, null: false
     field :image_url, String, null: false
     field :url, String, null: false
+    field :started_at, String, null: true
+    field :ended_at, String, null: true
+    field :score, String, null: true
+    field :episodes, String, null: true
+    field :description, String, null: true
 
     field :waifus, [WaifuType], null: false
     def waifus 

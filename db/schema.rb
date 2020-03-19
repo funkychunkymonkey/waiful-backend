@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_210201) do
+ActiveRecord::Schema.define(version: 2020_03_19_104901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,11 @@ ActiveRecord::Schema.define(version: 2020_03_15_210201) do
     t.integer "mal_id"
     t.string "image_url"
     t.string "url"
+    t.string "started_at"
+    t.string "ended_at"
+    t.string "score"
+    t.integer "episodes"
+    t.text "description"
     t.index ["mal_id"], name: "index_series_on_mal_id"
   end
 
