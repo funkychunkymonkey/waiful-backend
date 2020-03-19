@@ -5,6 +5,7 @@ module Types
     field :data, String, null: false
     field :started_at, GraphQL::Types::ISO8601DateTime, null: false
     field :ended_at, GraphQL::Types::ISO8601DateTime, null: true
+    field :gems, Int, null:true
 
     field :user, UserType, null: false
   end

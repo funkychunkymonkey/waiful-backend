@@ -1,4 +1,4 @@
-ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, muscle_groups, muscle_groups_muscles, runs, users, users_waifus, waifus, workouts, series, series_users")
+ActiveRecord::Base.connection.execute("TRUNCATE equipments, equipments_exercises, exercise_categories, exercise_images, exercises, exercises_muscles, muscles, muscle_groups, muscle_groups_muscles, personalities_users, runs, users, users_waifus, waifus, waifu_images, workouts, series, series_users")
 
 muscle_groups = JSON.parse(File.read('./db/json/muscle_groups.json'))
 muscle_groups.each do |muscle_group|
@@ -44,19 +44,20 @@ existing_exercises = []
 exercise_muscles = []
 exercise_equipments = []
 exercises.each do |exercise|
-  if(exercise["language"] == 2 )
+  if(exercise["language"] == 2 && exercise["muscles"].size > 0 && exercise["equipment"].size > 0 && exercise['description'].size >= 100)
     newExercise = Exercise.create!({
       :id => exercise['id'],
       :name => exercise['name'],
       :description => exercise['description'],
-      :exercise_category_id => exercise['category']
     })
     existing_exercises << exercise['id']
     exercise["muscles"].each do |muscle|
         exercise_muscles <<  "(#{newExercise.id}, #{muscle})"
     end
     exercise["equipment"].each do |equipment|
-      if(equipment != 7)
+      if(equipment == 9)
+        exercise_equipments <<  "(#{newExercise.id}, 8)"
+      elsif(equipment != 7)
         exercise_equipments <<  "(#{newExercise.id}, #{equipment})"
       end
     end
@@ -76,16 +77,4 @@ exerciseImages.each do |image|
       :is_main => image['is_main']
     })
   end
-end
-
-users = JSON.parse(File.read('./db/json/users.json'))
-users.each do |user|
-    User.create!({
-      :id => user['id'],
-      :email => user['email'],
-      :token => user['token'],
-      :gems => user['gems'],
-      :created_at => Time.current,
-      :updated_at => Time.current
-    })
 end

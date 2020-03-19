@@ -4,11 +4,22 @@ class WaifuService
     end
 
     def gacha
-        if(@user.gems > 0)
-            @user.gems = @user.gems - 1
+        if(@user.gems >= 20)
+            @user.gems = @user.gems - 20
             @user.save
             waifu = generate_waifu
-            add_waifu(waifu)
+            waifu = add_waifu(waifu)
+            waifu
+        else
+            false
+        end
+    end
+
+    def buy_waifu(waifu)
+        if(@user.gems >= 100)
+            @user.gems = @user.gems - 100
+            @user.save
+            waifu = add_waifu(waifu)
             waifu
         else
             false
@@ -24,22 +35,51 @@ class WaifuService
         character = characters.sample
 
         character.series = series
-        existing_character = Waifu.where(mal_id: character.mal_id).first
-        if(existing_character === nil)
-            character.save
-        else
-            character = existing_character
-        end
+        get_waifu(series, character.mal_id)
+    end
 
+    def get_waifu(series, mal_id)
+        character = Waifu.where(mal_id: mal_id).first
+        if(character === nil)
+            jikan_service = JikanService.new
+            character = jikan_service.get_waifu(mal_id)
+            character.series_id = series.id
+            character.save
+            jikan_service.get_character_images(character.mal_id).map{|image| character.waifu_images.create!({ url: image['large'] })}
+        end
         character
     end
 
+    def get_waifu(series, mal_id)
+        waifu = Waifu.where(mal_id: mal_id).first
+        if(waifu == nil) then
+            jikan_service = JikanService.new
+            waifu = jikan_service.get_waifu(mal_id)
+            waifu.series_id = series.id
+            waifu.save
+        end
+        waifu
+    end
+
     def add_waifu(waifu)
-        @user.waifus << waifu
+        rows = ActiveRecord::Base.connection.update("UPDATE users_waifus SET level = level + 1, updated_at = NOW() FROM waifus WHERE users_waifus.user_id = #{@user.id} AND users_waifus.waifu_id = waifus.id AND waifus.mal_id = #{waifu.mal_id}") 
+        if(rows == 0)
+            @user.waifus << waifu
+        end 
+        @user.waifus.where(mal_id: waifu.mal_id).first
     end
 
     def remove_waifu(waifu)
+        gems = @user.waifus.where(mal_id: waifu.mal_id).size
         @user.waifus.delete(waifu)
+        gems
+    end
+
+    def sell_waifu(waifu)
+        gems = remove_waifu(waifu)
+        @user.gems = @user.gems + gems
+        @user.save
+        gems
     end
 
     def favorite_waifu(waifu, value = true)

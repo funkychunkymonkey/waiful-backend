@@ -3,15 +3,11 @@ module Mutations
     argument :exercise_id, ID, required: true
     argument :reps, Int, required: true
 
-    type Types::WorkoutsType
+    type Types::WorkoutType
 
     def resolve(input)
-      User.find(1).workouts.create!({
-        exercise_id: input[:exercise_id],
-        reps: input[:reps],
-        created_at: Time.current,
-        updated_at: Time.current
-      })
+      service = WorkoutService.new(context[:user])
+      service.create(input)
     end
   end
 end 
