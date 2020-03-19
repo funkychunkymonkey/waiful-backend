@@ -37,17 +37,30 @@ class JikanService
     private
 
     def mal_to_series(mal_type, series)
+        started_at = '';
+        ended_at = '';
+
+        if(series['aired']) 
+            started_at = DateTime.parse(series['aired']['from']).strftime('%b %Y')
+            ended_at = DateTime.parse(series['aired']['to']).strftime('%b %Y')
+        elsif(series['published'])
+            started_at = DateTime.parse(series['published']['from']).strftime('%b %Y')
+            ended_at = DateTime.parse(series['published']['to']).strftime('%b %Y')
+        else 
+            started_at = series['start_date']
+            ended_at = series['end_date']
+        end
         Series.new({
             :name => series["title"],
             :is_anime => mal_type === "anime",
             :mal_id => series["mal_id"],
             :image_url => series["image_url"],
             :url => series["url"],
-            :episodes => series["episodes"],
-            :type => series["type"],
-            :start_date => series["start_date"],
-            :end_date => series["end_date"],
+            :started_at => started_at,
+            :ended_at => ended_at,
             :score => series["score"],
+            :episodes => series["episodes"] ? series["episodes"] : series["volumes"],
+            :description => series["synopsis"],
         })
     end
     def mal_to_waifu(character)
