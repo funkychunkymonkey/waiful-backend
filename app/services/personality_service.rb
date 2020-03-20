@@ -7,7 +7,7 @@ class PersonalityService
         if(price == nil || price <= 0) 
             price = 200
         end
-        if(ActiveRecord::Base.connection.select_one("SELECT COUNT(*) count FROM personalities_users WHERE user_id = #{@user.id} AND personality_id = #{personality_id}")['count'] === 0 and @user.gems >= 200)
+        if(ActiveRecord::Base.connection.select_one("SELECT COUNT(*) count FROM personalities_users WHERE user_id = #{@user.id} AND personality_id = #{personality_id}")['count'] === 0 and @user.gems >= price)
             @user.gems = @user.gems - price
             @user.save
             ActiveRecord::Base.connection.insert("INSERT INTO personalities_users(user_id, personality_id) VALUES(#{@user.id}, #{personality_id})")
