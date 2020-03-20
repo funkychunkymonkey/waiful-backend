@@ -3,6 +3,7 @@ module Mutations
         argument :waifu_mal_id, Int, required: true
         argument :series_mal_type, String, required: true
         argument :series_mal_id, Int, required: true
+        argument :price, Int, required: false
       type Types::WaifuType
       def resolve(input)
         series_service = SeriesService.new(context[:user])
@@ -10,7 +11,7 @@ module Mutations
         
         waifu_service = WaifuService.new(context[:user])
         waifu = waifu_service.get_waifu(series, input[:waifu_mal_id])
-        waifu = waifu_service.buy_waifu(waifu)
+        waifu = waifu_service.buy_waifu(waifu, input[:price])
 
         if(waifu === false)
           GraphQL::ExecutionError.new("Insufficient gems.")
